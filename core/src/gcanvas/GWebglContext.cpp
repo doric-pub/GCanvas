@@ -274,7 +274,7 @@ namespace gcanvas {
     } FuncReturnType;
 
     const char *GetMacroValDebug(int index) {
-#ifdef DEBUG
+#if 1
         switch (index) {
             case 0x0: return "GL_NONE or GL_ZERO or GL_POINTS";
             case 0x1: return "GL_ONE or GL_LINES";
@@ -1084,6 +1084,9 @@ namespace gcanvas {
         const int *tokens = ParseTokensInt(p, 1);
         LOG_D("[webgl::exec] glEnable(%s)", GetMacroValDebug(tokens[0]));
         glEnable(tokens[0]);
+        if(tokens[0] == GL_DEPTH_TEST) {
+            glDepthFunc(GL_LESS);
+        }
         return kContinue;
     }
 
@@ -1300,7 +1303,7 @@ namespace gcanvas {
 //new
     int getParameter(GCanvasWeex *obj, const char *&p) {
         //ref:https://www.khronos.org/registry/OpenGL-Refpages/es2.0/xhtml/glGet.xml
-        
+
         const int *tokens = ParseTokensInt(p, 1);
         GLenum pname = tokens[0];
 
@@ -1816,7 +1819,7 @@ namespace gcanvas {
 //new
     int getTexParameter(GCanvasWeex *obj, const char *&p) {
         //https://www.khronos.org/registry/OpenGL-Refpages/es2.0/xhtml/glGetTexParameter.xml
-        
+
         //WebGL 1.0 only support glGetTexParameteriv
         const int *tokens = ParseTokensInt(p, 2);
         GLenum target = tokens[0];
@@ -2721,7 +2724,7 @@ namespace gcanvas {
         if (fvalue) {
             LOG_D("[webgl::exec] glUniformMatrix%dfv(%d, %d, %d, %f)", type, location,
                   size / (type * type), transpose, *fvalue);
-            
+
             switch (type) {
                 case 2:
                     glUniformMatrix2fv(location, size / 4, transpose, fvalue);
@@ -2733,7 +2736,7 @@ namespace gcanvas {
                     glUniformMatrix4fv(location, size / 16, transpose, fvalue);
                     break;
             }
-            
+
             if (g_encode_type != 1) {
                 free((void *) fvalue);
             }
@@ -2975,7 +2978,7 @@ namespace gcanvas {
             getBufferParameter,//60 new
             NULL, // getContextAttributes,      //OpenGL ES not support
             getError,//new
-            NULL, //getExtension,              //OpenGL ES not support
+            getExtension,              //OpenGL ES not support
             getFramebufferAttachmentParameter,//new
             getParameter,//new
             getProgramInfoLog,//new
@@ -3117,15 +3120,15 @@ namespace gcanvas {
     int drawArraysInstancedANGLE(GCanvasWeex *obj, const char *&p) {
         return kContinue;
     }
-    
+
     int drawElementsInstancedANGLE(GCanvasWeex *obj, const char *&p) {
         return kContinue;
     }
-    
+
     int vertexAttribDivisorANGLE(GCanvasWeex *obj, const char *&p) {
         return kContinue;
     }
-    
+
     int createVertexArrayOES(GCanvasWeex *obj, const char *&p) {
         ++p;
         GLuint array;
@@ -3135,7 +3138,7 @@ namespace gcanvas {
         obj->setSyncResult(gcanvas::toString(array));
         return kContinue;
     }
-    
+
     int deleteVertexArrayOES(GCanvasWeex *obj, const char *&p) {
         const int *tokens = ParseTokensInt(p, 1);
         GLuint array = tokens[0];
@@ -3145,7 +3148,7 @@ namespace gcanvas {
         }
         return kContinue;
     }
-    
+
     int isVertexArrayOES(GCanvasWeex *obj, const char *&p) {
         const int *tokens = ParseTokensInt(p, 1);
         GLuint array = tokens[0];
@@ -3155,16 +3158,16 @@ namespace gcanvas {
         }
         return kContinue;
     }
-    
+
     int bindVertexArrayOES(GCanvasWeex *obj, const char *&p) {
         const int *tokens = ParseTokensInt(p, 1);
         GLuint array = tokens[0];
         if (glBindVertexArrayOESv) {
             glBindVertexArrayOESv(array);
-        }        
+        }
         return kContinue;
     }
-    
+
 #endif
 
 

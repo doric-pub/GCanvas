@@ -8,7 +8,6 @@
 #include "grenderer.h"
 
 
-
 GRenderer::GRenderer(std::string key) : m_egl_context(0),
                                         m_egl_display(0),
                                         m_egl_surface(0),
@@ -229,10 +228,6 @@ void GRenderer::renderLoop() {
             pthread_cond_wait(&m_cond, &m_mutex);
         }
 
-        if (mProxy != nullptr) {
-            mProxy->finishProc();
-        }
-
         if (m_viewportchanged) {
             if (!m_initialized) {
                 bool initResult = initialize();
@@ -292,6 +287,10 @@ void GRenderer::renderLoop() {
             }
         }
 
+        if (mProxy != nullptr) {
+            mProxy->finishProc();
+        }
+
         pthread_mutex_unlock(&m_mutex);
     }
 
@@ -335,7 +334,7 @@ void GRenderer::requestCreateCanvas(const std::string contextid) {
     mContextId = contextid;
 
     if (!m_createCanvas) {
-        LOG_D("not create canvas create");
+        LOG_E("not create canvas create");
         if (!mProxy) {
             mProxy = new GcanvasWeexAndroid(mContextId, this);
             mProxy->CreateContext();
@@ -348,6 +347,7 @@ void GRenderer::requestCreateCanvas(const std::string contextid) {
         pthread_cond_signal(&m_cond);
     } else {
         LOG_D("already create the canvas");
+        mProxy->SetContextType(m_context_type);
     }
 }
 
