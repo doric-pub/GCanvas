@@ -59,16 +59,16 @@ export default class WebGLRenderingContext {
     this._map = new Map();
 
     Object.keys(GLenum)
-          .forEach(name => Object.defineProperty(this, name, {
-            value: GLenum[name]
-          }));
+      .forEach(name => Object.defineProperty(this, name, {
+        value: GLenum[name]
+      }));
   }
 
   get canvas() {
     return this._canvas;
   }
 
-  activeTexture = function(textureUnit) {
+  activeTexture = function (textureUnit) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.activeTexture + ',' + textureUnit,
@@ -76,7 +76,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  attachShader = function(progarm, shader) {
+  attachShader = function (progarm, shader) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.attachShader + ',' + progarm.id + ',' + shader.id,
@@ -84,7 +84,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  bindAttribLocation = function(program, index, name) {
+  bindAttribLocation = function (program, index, name) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.bindAttribLocation + ',' + program.id + ',' + index + ',' + name,
@@ -92,7 +92,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  bindBuffer = function(target, buffer) {
+  bindBuffer = function (target, buffer) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.bindBuffer + ',' + target + ',' + (buffer ? buffer.id : 0),
@@ -100,7 +100,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  bindFramebuffer = function(target, framebuffer) {
+  bindFramebuffer = function (target, framebuffer) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.bindFramebuffer + ',' + target + ',' + (framebuffer ? framebuffer.id : 0),
@@ -108,7 +108,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  bindRenderbuffer = function(target, renderBuffer) {
+  bindRenderbuffer = function (target, renderBuffer) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.bindRenderbuffer + ',' + target + ',' + (renderBuffer ? renderBuffer.id : 0),
@@ -116,7 +116,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  bindTexture = function(target, texture) {
+  bindTexture = function (target, texture) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.bindTexture + ',' + target + ',' + (texture ? texture.id : 0),
@@ -124,7 +124,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  blendColor = function(r, g, b, a) {
+  blendColor = function (r, g, b, a) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.blendColor + ',' + r + ',' + g + ',' + b + ',' + a,
@@ -132,7 +132,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  blendEquation = function(mode) {
+  blendEquation = function (mode) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.blendEquation + ',' + mode,
@@ -140,7 +140,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  blendEquationSeparate = function(modeRGB, modeAlpha) {
+  blendEquationSeparate = function (modeRGB, modeAlpha) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.blendEquationSeparate + ',' + modeRGB + ',' + modeAlpha,
@@ -149,7 +149,7 @@ export default class WebGLRenderingContext {
   }
 
 
-  blendFunc = function(sfactor, dfactor) {
+  blendFunc = function (sfactor, dfactor) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.blendFunc + ',' + sfactor + ',' + dfactor,
@@ -157,7 +157,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  blendFuncSeparate = function(srcRGB, dstRGB, srcAlpha, dstAlpha) {
+  blendFuncSeparate = function (srcRGB, dstRGB, srcAlpha, dstAlpha) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.blendFuncSeparate + ',' + srcRGB + ',' + dstRGB + ',' + srcAlpha + ',' + dstAlpha,
@@ -165,7 +165,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  bufferData = function(target, data, usage) {
+  bufferData = function (target, data, usage) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.bufferData + ',' + target + ',' + processArray(data, true) + ',' + usage,
@@ -173,7 +173,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  bufferSubData = function(target, offset, data) {
+  bufferSubData = function (target, offset, data) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.bufferSubData + ',' + target + ',' + offset + ',' + processArray(data, true),
@@ -181,7 +181,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  checkFramebufferStatus = function(target) {
+  checkFramebufferStatus = function (target) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.checkFramebufferStatus + ',' + target
@@ -189,7 +189,7 @@ export default class WebGLRenderingContext {
     return Number(result);
   }
 
-  clear = function(mask) {
+  clear = function (mask) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.clear + ',' + mask
@@ -197,15 +197,15 @@ export default class WebGLRenderingContext {
     this._canvas._needRender = true;
   }
 
-  clearColor = function(r, g, b, a) {
+  clearColor = function (r, g, b, a) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
-      GLmethod.clearColor + ',' + r + ',' + g + ',' + b,
+      GLmethod.clearColor + ',' + r + ',' + g + ',' + b + ',' + a,
       true
     );
   }
 
-  clearDepth = function(depth) {
+  clearDepth = function (depth) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.clearDepth + ',' + depth,
@@ -213,21 +213,21 @@ export default class WebGLRenderingContext {
     );
   }
 
-  clearStencil = function(s) {
+  clearStencil = function (s) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.clearStencil + ',' + s
     );
   }
 
-  colorMask = function(r, g, b, a) {
+  colorMask = function (r, g, b, a) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.colorMask + ',' + r + ',' + g + ',' + b + ',' + a
     );
   }
 
-  compileShader = function(shader) {
+  compileShader = function (shader) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.compileShader + ',' + shader.id,
@@ -235,43 +235,43 @@ export default class WebGLRenderingContext {
     );
   }
 
-  compressedTexImage2D = function(target, level, internalformat, width, height, border, pixels) {
+  compressedTexImage2D = function (target, level, internalformat, width, height, border, pixels) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.compressedTexImage2D + ',' + target + ',' + level + ',' + internalformat + ',' +
-          width + ',' + height + ',' + border + ',' + processArray(pixels),
+      width + ',' + height + ',' + border + ',' + processArray(pixels),
       true
     );
   }
 
-  compressedTexSubImage2D = function(target, level, xoffset, yoffset, width, height, format, pixels) {
+  compressedTexSubImage2D = function (target, level, xoffset, yoffset, width, height, format, pixels) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.compressedTexSubImage2D + ',' + target + ',' + level + ',' + xoffset + ',' + yoffset + ',' +
-          width + ',' + height + ',' + format + ',' + processArray(pixels),
+      width + ',' + height + ',' + format + ',' + processArray(pixels),
       true
     );
   }
 
 
-  copyTexImage2D = function(target, level, internalformat, x, y, width, height, border) {
+  copyTexImage2D = function (target, level, internalformat, x, y, width, height, border) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.copyTexImage2D + ',' + target + ',' + level + ',' + internalformat + ',' + x + ',' + y + ',' +
-          width + ',' + height + ',' + border,
+      width + ',' + height + ',' + border,
       true
     );
   }
 
-  copyTexSubImage2D = function(target, level, xoffset, yoffset, x, y, width, height) {
+  copyTexSubImage2D = function (target, level, xoffset, yoffset, x, y, width, height) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.copyTexSubImage2D + ',' + target + ',' + level + ',' + xoffset + ',' + yoffset + ',' + x + ',' + y + ',' +
-          width + ',' + height
+      width + ',' + height
     );
   }
 
-  createBuffer = function() {
+  createBuffer = function () {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.createBuffer + ''
@@ -281,7 +281,7 @@ export default class WebGLRenderingContext {
     return buffer;
   }
 
-  createFramebuffer = function() {
+  createFramebuffer = function () {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.createFramebuffer + ''
@@ -292,7 +292,7 @@ export default class WebGLRenderingContext {
   }
 
 
-  createProgram = function() {
+  createProgram = function () {
     const id = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.createProgram + ''
@@ -302,7 +302,7 @@ export default class WebGLRenderingContext {
     return program;
   }
 
-  createRenderbuffer = function() {
+  createRenderbuffer = function () {
     const id = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.createRenderbuffer + ''
@@ -312,7 +312,7 @@ export default class WebGLRenderingContext {
     return renderBuffer;
   }
 
-  createShader = function(type) {
+  createShader = function (type) {
     const id = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.createShader + ',' + type
@@ -322,7 +322,7 @@ export default class WebGLRenderingContext {
     return shader;
   }
 
-  createTexture = function() {
+  createTexture = function () {
     const id = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.createTexture + ''
@@ -332,7 +332,7 @@ export default class WebGLRenderingContext {
     return texture;
   }
 
-  cullFace = function(mode) {
+  cullFace = function (mode) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.cullFace + ',' + mode,
@@ -341,7 +341,7 @@ export default class WebGLRenderingContext {
   }
 
 
-  deleteBuffer = function(buffer) {
+  deleteBuffer = function (buffer) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.deleteBuffer + ',' + buffer.id,
@@ -349,7 +349,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  deleteFramebuffer = function(framebuffer) {
+  deleteFramebuffer = function (framebuffer) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.deleteFramebuffer + ',' + framebuffer.id,
@@ -357,7 +357,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  deleteProgram = function(program) {
+  deleteProgram = function (program) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.deleteProgram + ',' + program.id,
@@ -365,7 +365,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  deleteRenderbuffer = function(renderbuffer) {
+  deleteRenderbuffer = function (renderbuffer) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.deleteRenderbuffer + ',' + renderbuffer.id,
@@ -373,7 +373,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  deleteShader = function(shader) {
+  deleteShader = function (shader) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.deleteShader + ',' + shader.id,
@@ -381,7 +381,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  deleteTexture = function(texture) {
+  deleteTexture = function (texture) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.deleteTexture + ',' + texture.id,
@@ -389,14 +389,14 @@ export default class WebGLRenderingContext {
     );
   }
 
-  depthFunc = function(func) {
+  depthFunc = function (func) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.depthFunc + ',' + func
     );
   }
 
-  depthMask = function(flag) {
+  depthMask = function (flag) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.depthMask + ',' + Number(flag),
@@ -404,7 +404,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  depthRange = function(zNear, zFar) {
+  depthRange = function (zNear, zFar) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.depthRange + ',' + zNear + ',' + zFar,
@@ -412,7 +412,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  detachShader = function(program, shader) {
+  detachShader = function (program, shader) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.detachShader + ',' + program.id + ',' + shader.id,
@@ -420,7 +420,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  disable = function(cap) {
+  disable = function (cap) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.disable + ',' + cap,
@@ -428,7 +428,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  disableVertexAttribArray = function(index) {
+  disableVertexAttribArray = function (index) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.disableVertexAttribArray + ',' + index,
@@ -436,7 +436,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  drawArrays = function(mode, first, count) {
+  drawArrays = function (mode, first, count) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.drawArrays + ',' + mode + ',' + first + ',' + count
@@ -444,7 +444,7 @@ export default class WebGLRenderingContext {
     this._canvas._needRender = true;
   }
 
-  drawElements = function(mode, count, type, offset) {
+  drawElements = function (mode, count, type, offset) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.drawElements + ',' + mode + ',' + count + ',' + type + ',' + offset + ';'
@@ -452,7 +452,7 @@ export default class WebGLRenderingContext {
     this._canvas._needRender = true;
   }
 
-  enable = function(cap) {
+  enable = function (cap) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.enable + ',' + cap,
@@ -460,7 +460,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  enableVertexAttribArray = function(index) {
+  enableVertexAttribArray = function (index) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.enableVertexAttribArray + ',' + index,
@@ -469,22 +469,22 @@ export default class WebGLRenderingContext {
   }
 
 
-  flush = function() {
+  flush = function () {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.flush + ''
     );
   }
 
-  framebufferRenderbuffer = function(target, attachment, textarget, texture, level) {
+  framebufferRenderbuffer = function (target, attachment, textarget, texture) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
-      GLmethod.framebufferRenderbuffer + ',' + target + ',' + attachment + ',' + textarget + ',' + (texture ? texture.id : 0) + ',' + level,
+      GLmethod.framebufferRenderbuffer + ',' + target + ',' + attachment + ',' + textarget + ',' + (texture ? texture.id : 0),
       true
     );
   }
 
-  framebufferTexture2D = function(target, attachment, textarget, texture, level) {
+  framebufferTexture2D = function (target, attachment, textarget, texture, level) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.framebufferTexture2D + ',' + target + ',' + attachment + ',' + textarget + ',' + (texture ? texture.id : 0) + ',' + level,
@@ -492,7 +492,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  frontFace = function(mode) {
+  frontFace = function (mode) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.frontFace + ',' + mode,
@@ -500,7 +500,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  generateMipmap = function(target) {
+  generateMipmap = function (target) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.generateMipmap + ',' + target,
@@ -508,7 +508,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  getActiveAttrib = function(progarm, index) {
+  getActiveAttrib = function (progarm, index) {
     const resultString = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getActiveAttrib + ',' + progarm.id + ',' + index
@@ -521,7 +521,7 @@ export default class WebGLRenderingContext {
     });
   }
 
-  getActiveUniform = function(progarm, index) {
+  getActiveUniform = function (progarm, index) {
     const resultString = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getActiveUniform + ',' + progarm.id + ',' + index
@@ -534,7 +534,7 @@ export default class WebGLRenderingContext {
     });
   }
 
-  getAttachedShaders = function(progarm) {
+  getAttachedShaders = function (progarm) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getAttachedShaders + ',' + progarm.id
@@ -543,14 +543,14 @@ export default class WebGLRenderingContext {
     return ids.map(id => this._map.get(Shader.uuid(id)));
   }
 
-  getAttribLocation = function(progarm, name) {
+  getAttribLocation = function (progarm, name) {
     return WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getAttribLocation + ',' + progarm.id + ',' + name
     );
   }
 
-  getBufferParameter = function(target, pname) {
+  getBufferParameter = function (target, pname) {
     const [type, res] = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getBufferParameter + ',' + target + ',' + pname
@@ -558,7 +558,7 @@ export default class WebGLRenderingContext {
     return res;
   }
 
-  getError = function() {
+  getError = function () {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getError + ''
@@ -566,11 +566,20 @@ export default class WebGLRenderingContext {
     return result;
   }
 
-  getExtension = function(name) {
+  getExtension = function (name) {
+    if (!this._extensions) {
+      this._extensions = WebGLRenderingContext.GBridge.callNative(
+        this._canvas.id,
+        GLmethod.getExtension
+      ).split(' ')
+    }
+    if (this._extensions.filter(e => e === `GL_${name}`).length > 0) {
+      return this
+    }
     return null;
   }
 
-  getFramebufferAttachmentParameter = function(target, attachment, pname) {
+  getFramebufferAttachmentParameter = function (target, attachment, pname) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getFramebufferAttachmentParameter + ',' + target + ',' + attachment + ',' + pname
@@ -583,7 +592,7 @@ export default class WebGLRenderingContext {
     }
   }
 
-  getParameter = function(pname) {
+  getParameter = function (pname) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getParameter + ',' + pname
@@ -622,14 +631,14 @@ export default class WebGLRenderingContext {
     }
   }
 
-  getProgramInfoLog = function(progarm) {
+  getProgramInfoLog = function (progarm) {
     return WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getProgramInfoLog + ',' + progarm.id
     );
   }
 
-  getProgramParameter = function(program, pname) {
+  getProgramParameter = function (program, pname) {
     const res = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getProgramParameter + ',' + program.id + ',' + pname
@@ -647,7 +656,7 @@ export default class WebGLRenderingContext {
   }
 
 
-  getRenderbufferParameter = function(target, pname) {
+  getRenderbufferParameter = function (target, pname) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getRenderbufferParameter + ',' + target + ',' + pname
@@ -656,21 +665,21 @@ export default class WebGLRenderingContext {
   }
 
 
-  getShaderInfoLog = function(shader) {
+  getShaderInfoLog = function (shader) {
     return WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getShaderInfoLog + ',' + shader.id
     );
   }
 
-  getShaderParameter = function(shader, pname) {
+  getShaderParameter = function (shader, pname) {
     return WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getShaderParameter + ',' + shader.id + ',' + pname
     );
   }
 
-  getShaderPrecisionFormat = function(shaderType, precisionType) {
+  getShaderPrecisionFormat = function (shaderType, precisionType) {
     const [rangeMin, rangeMax, precision] = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getShaderPrecisionFormat + ',' + shaderType + ',' + precisionType
@@ -683,7 +692,7 @@ export default class WebGLRenderingContext {
     return shaderPrecisionFormat;
   }
 
-  getShaderSource = function(shader) {
+  getShaderSource = function (shader) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getShaderSource + ',' + shader.id
@@ -691,11 +700,11 @@ export default class WebGLRenderingContext {
     return result;
   }
 
-  getSupportedExtensions = function() {
+  getSupportedExtensions = function () {
     return Object.keys({});
   }
 
-  getTexParameter = function(target, pname) {
+  getTexParameter = function (target, pname) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getTexParameter + ',' + target + ',' + pname
@@ -703,7 +712,7 @@ export default class WebGLRenderingContext {
     return result;
   }
 
-  getUniformLocation = function(program, name) {
+  getUniformLocation = function (program, name) {
     const id = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getUniformLocation + ',' + program.id + ',' + name
@@ -715,7 +724,7 @@ export default class WebGLRenderingContext {
     }
   }
 
-  getVertexAttrib = function(index, pname) {
+  getVertexAttrib = function (index, pname) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getVertexAttrib + ',' + index + ',' + pname
@@ -729,7 +738,7 @@ export default class WebGLRenderingContext {
     }
   }
 
-  getVertexAttribOffset = function(index, pname) {
+  getVertexAttribOffset = function (index, pname) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.getVertexAttribOffset + ',' + index + ',' + pname
@@ -737,7 +746,7 @@ export default class WebGLRenderingContext {
     return Number(result);
   }
 
-  isBuffer = function(buffer) {
+  isBuffer = function (buffer) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.isBuffer + ',' + buffer.id
@@ -745,11 +754,11 @@ export default class WebGLRenderingContext {
     return Boolean(result);
   }
 
-  isContextLost = function() {
+  isContextLost = function () {
     return false;
   }
 
-  isEnabled = function(cap) {
+  isEnabled = function (cap) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.isEnabled + ',' + cap
@@ -757,7 +766,7 @@ export default class WebGLRenderingContext {
     return Boolean(result);
   }
 
-  isFramebuffer = function(framebuffer) {
+  isFramebuffer = function (framebuffer) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.isFramebuffer + ',' + framebuffer.id
@@ -765,7 +774,7 @@ export default class WebGLRenderingContext {
     return Boolean(result);
   }
 
-  isProgram = function(program) {
+  isProgram = function (program) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.isProgram + ',' + program.id
@@ -773,7 +782,7 @@ export default class WebGLRenderingContext {
     return Boolean(result);
   }
 
-  isRenderbuffer = function(renderBuffer) {
+  isRenderbuffer = function (renderBuffer) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.isRenderbuffer + ',' + renderBuffer.id
@@ -781,7 +790,7 @@ export default class WebGLRenderingContext {
     return Boolean(result);
   }
 
-  isShader = function(shader) {
+  isShader = function (shader) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.isShader + ',' + shader.id
@@ -789,7 +798,7 @@ export default class WebGLRenderingContext {
     return Boolean(result);
   }
 
-  isTexture = function(texture) {
+  isTexture = function (texture) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.isTexture + ',' + texture.id
@@ -797,7 +806,7 @@ export default class WebGLRenderingContext {
     return Boolean(result);
   }
 
-  lineWidth = function(width) {
+  lineWidth = function (width) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.lineWidth + ',' + width,
@@ -805,7 +814,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  linkProgram = function(program) {
+  linkProgram = function (program) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.linkProgram + ',' + program.id,
@@ -814,21 +823,21 @@ export default class WebGLRenderingContext {
   }
 
 
-  pixelStorei = function(pname, param) {
+  pixelStorei = function (pname, param) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.pixelStorei + ',' + pname + ',' + Number(param)
     );
   }
 
-  polygonOffset = function(factor, units) {
+  polygonOffset = function (factor, units) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.polygonOffset + ',' + factor + ',' + units
     );
   }
 
-  readPixels = function(x, y, width, height, format, type, pixels) {
+  readPixels = function (x, y, width, height, format, type, pixels) {
     const result = WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.readPixels + ',' + x + ',' + y + ',' + width + ',' + height + ',' + format + ',' + type
@@ -836,7 +845,7 @@ export default class WebGLRenderingContext {
     return result;
   }
 
-  renderbufferStorage = function(target, internalFormat, width, height) {
+  renderbufferStorage = function (target, internalFormat, width, height) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.renderbufferStorage + ',' + target + ',' + internalFormat + ',' + width + ',' + height,
@@ -844,7 +853,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  sampleCoverage = function(value, invert) {
+  sampleCoverage = function (value, invert) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.sampleCoverage + ',' + value + ',' + Number(invert),
@@ -852,7 +861,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  scissor = function(x, y, width, height) {
+  scissor = function (x, y, width, height) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.scissor + ',' + x + ',' + y + ',' + width + ',' + height,
@@ -860,14 +869,14 @@ export default class WebGLRenderingContext {
     );
   }
 
-  shaderSource = function(shader, source) {
+  shaderSource = function (shader, source) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.shaderSource + ',' + shader.id + ',' + source
     );
   }
 
-  stencilFunc = function(func, ref, mask) {
+  stencilFunc = function (func, ref, mask) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.stencilFunc + ',' + func + ',' + ref + ',' + mask,
@@ -875,7 +884,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  stencilFuncSeparate = function(face, func, ref, mask) {
+  stencilFuncSeparate = function (face, func, ref, mask) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.stencilFuncSeparate + ',' + face + ',' + func + ',' + ref + ',' + mask,
@@ -883,7 +892,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  stencilMask = function(mask) {
+  stencilMask = function (mask) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.stencilMask + ',' + mask,
@@ -891,7 +900,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  stencilMaskSeparate = function(face, mask) {
+  stencilMaskSeparate = function (face, mask) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.stencilMaskSeparate + ',' + face + ',' + mask,
@@ -899,14 +908,14 @@ export default class WebGLRenderingContext {
     );
   }
 
-  stencilOp = function(fail, zfail, zpass) {
+  stencilOp = function (fail, zfail, zpass) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.stencilOp + ',' + fail + ',' + zfail + ',' + zpass
     );
   }
 
-  stencilOpSeparate = function(face, fail, zfail, zpass) {
+  stencilOpSeparate = function (face, fail, zfail, zpass) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.stencilOp + ',' + face + ',' + fail + ',' + zfail + ',' + zpass,
@@ -914,12 +923,12 @@ export default class WebGLRenderingContext {
     );
   }
 
-  texImage2D = function(...args) {
+  texImage2D = function (...args) {
     WebGLRenderingContext.GBridge.texImage2D(this._canvas.id, ...args);
   }
 
 
-  texParameterf = function(target, pname, param) {
+  texParameterf = function (target, pname, param) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.texParameterf + ',' + target + ',' + pname + ',' + param,
@@ -927,25 +936,25 @@ export default class WebGLRenderingContext {
     );
   }
 
-  texParameteri = function(target, pname, param) {
+  texParameteri = function (target, pname, param) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.texParameteri + ',' + target + ',' + pname + ',' + param
     );
   }
 
-  texSubImage2D = function(...args) {
+  texSubImage2D = function (...args) {
     WebGLRenderingContext.GBridge.texSubImage2D(this._canvas.id, ...args);
   }
 
-  uniform1f = function(location, v0) {
+  uniform1f = function (location, v0) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniform1f + ',' + location.id + ',' + v0
     );
   }
 
-  uniform1fv = function(location, value) {
+  uniform1fv = function (location, value) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniform1fv + ',' + location.id + ',' + processArray(value),
@@ -953,7 +962,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniform1i = function(location, v0) {
+  uniform1i = function (location, v0) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniform1i + ',' + location.id + ',' + v0,
@@ -961,7 +970,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniform1iv = function(location, value) {
+  uniform1iv = function (location, value) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniform1iv + ',' + location.id + ',' + processArray(value),
@@ -969,7 +978,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniform2f = function(location, v0, v1) {
+  uniform2f = function (location, v0, v1) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniform2f + ',' + location.id + ',' + v0 + ',' + v1,
@@ -977,7 +986,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniform2fv = function(location, value) {
+  uniform2fv = function (location, value) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniform2fv + ',' + location.id + ',' + processArray(value),
@@ -985,7 +994,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniform2i = function(location, v0, v1) {
+  uniform2i = function (location, v0, v1) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniform2i + ',' + location.id + ',' + v0 + ',' + v1,
@@ -993,7 +1002,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniform2iv = function(location, value) {
+  uniform2iv = function (location, value) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniform2iv + ',' + location.id + ',' + processArray(value),
@@ -1001,7 +1010,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniform3f = function(location, v0, v1, v2) {
+  uniform3f = function (location, v0, v1, v2) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniform3f + ',' + location.id + ',' + v0 + ',' + v1 + ',' + v2,
@@ -1009,7 +1018,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniform3fv = function(location, value) {
+  uniform3fv = function (location, value) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniform3fv + ',' + location.id + ',' + processArray(value),
@@ -1017,7 +1026,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniform3i = function(location, v0, v1, v2) {
+  uniform3i = function (location, v0, v1, v2) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniform3i + ',' + location.id + ',' + v0 + ',' + v1 + ',' + v2,
@@ -1025,7 +1034,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniform3iv = function(location, value) {
+  uniform3iv = function (location, value) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniform3iv + ',' + location.id + ',' + processArray(value),
@@ -1033,7 +1042,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniform4f = function(location, v0, v1, v2, v3) {
+  uniform4f = function (location, v0, v1, v2, v3) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniform4f + ',' + location.id + ',' + v0 + ',' + v1 + ',' + v2 + ',' + v3,
@@ -1041,7 +1050,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniform4fv = function(location, value) {
+  uniform4fv = function (location, value) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniform4fv + ',' + location.id + ',' + processArray(value),
@@ -1049,7 +1058,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniform4i = function(location, v0, v1, v2, v3) {
+  uniform4i = function (location, v0, v1, v2, v3) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniform4i + ',' + location.id + ',' + v0 + ',' + v1 + ',' + v2 + ',' + v3,
@@ -1057,7 +1066,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniform4iv = function(location, value) {
+  uniform4iv = function (location, value) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniform4iv + ',' + location.id + ',' + processArray(value, true),
@@ -1065,7 +1074,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniformMatrix2fv = function(location, transpose, value) {
+  uniformMatrix2fv = function (location, transpose, value) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniformMatrix2fv + ',' + location.id + ',' + Number(transpose) + ',' + processArray(value),
@@ -1073,7 +1082,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniformMatrix3fv = function(location, transpose, value) {
+  uniformMatrix3fv = function (location, transpose, value) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniformMatrix3fv + ',' + location.id + ',' + Number(transpose) + ',' + processArray(value),
@@ -1081,7 +1090,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  uniformMatrix4fv = function(location, transpose, value) {
+  uniformMatrix4fv = function (location, transpose, value) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.uniformMatrix4fv + ',' + location.id + ',' + Number(transpose) + ',' + processArray(value),
@@ -1089,7 +1098,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  useProgram = function(progarm) {
+  useProgram = function (progarm) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.useProgram + ',' + progarm.id + '',
@@ -1098,7 +1107,7 @@ export default class WebGLRenderingContext {
   }
 
 
-  validateProgram = function(program) {
+  validateProgram = function (program) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.validateProgram + ',' + program.id,
@@ -1106,7 +1115,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  vertexAttrib1f = function(index, v0) {
+  vertexAttrib1f = function (index, v0) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.vertexAttrib1f + ',' + index + ',' + v0,
@@ -1114,7 +1123,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  vertexAttrib2f = function(index, v0, v1) {
+  vertexAttrib2f = function (index, v0, v1) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.vertexAttrib2f + ',' + index + ',' + v0 + ',' + v1,
@@ -1122,7 +1131,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  vertexAttrib3f = function(index, v0, v1, v2) {
+  vertexAttrib3f = function (index, v0, v1, v2) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.vertexAttrib3f + ',' + index + ',' + v0 + ',' + v1 + ',' + v2,
@@ -1130,7 +1139,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  vertexAttrib4f = function(index, v0, v1, v2, v3) {
+  vertexAttrib4f = function (index, v0, v1, v2, v3) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.vertexAttrib4f + ',' + index + ',' + v0 + ',' + v1 + ',' + v2 + ',' + v3,
@@ -1138,7 +1147,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  vertexAttrib1fv = function(index, value) {
+  vertexAttrib1fv = function (index, value) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.vertexAttrib1fv + ',' + index + ',' + processArray(value),
@@ -1146,7 +1155,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  vertexAttrib2fv = function(index, value) {
+  vertexAttrib2fv = function (index, value) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.vertexAttrib2fv + ',' + index + ',' + processArray(value),
@@ -1154,7 +1163,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  vertexAttrib3fv = function(index, value) {
+  vertexAttrib3fv = function (index, value) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.vertexAttrib3fv + ',' + index + ',' + processArray(value),
@@ -1162,7 +1171,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  vertexAttrib4fv = function(index, value) {
+  vertexAttrib4fv = function (index, value) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.vertexAttrib4fv + ',' + index + ',' + processArray(value),
@@ -1170,7 +1179,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  vertexAttribPointer = function(index, size, type, normalized, stride, offset) {
+  vertexAttribPointer = function (index, size, type, normalized, stride, offset) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.vertexAttribPointer + ',' + index + ',' + size + ',' + type + ',' + Number(normalized) + ',' + stride + ',' + offset,
@@ -1178,7 +1187,7 @@ export default class WebGLRenderingContext {
     );
   }
 
-  viewport = function(x, y, width, height) {
+  viewport = function (x, y, width, height) {
     WebGLRenderingContext.GBridge.callNative(
       this._canvas.id,
       GLmethod.viewport + ',' + x + ',' + y + ',' + width + ',' + height,
