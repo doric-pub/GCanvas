@@ -84,6 +84,7 @@ void waitUtilTimeout(sem_t *sem,uint ms){
     {
         gettimeofday(&now, NULL);
         LOG_D("wait time out,sec=%d,usec=%d\n",now.tv_sec,now.tv_usec);
+        waitUtilTimeout(sem,ms);
     }
     else
     {
