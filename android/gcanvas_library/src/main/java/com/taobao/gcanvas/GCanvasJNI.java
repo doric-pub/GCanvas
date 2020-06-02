@@ -255,7 +255,7 @@ public class GCanvasJNI {
     public static native void release(); // Deletes native canvas
 
 
-    public static native long getNativeInjectedFunction();
+    public static native long getNativeBtoa();
 
     public static native long getNativeCallGCanvasNative();
 

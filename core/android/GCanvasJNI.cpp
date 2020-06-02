@@ -37,7 +37,8 @@
 #include "prof.h"
 #endif
 
-#import "JSExports.h"
+#include  "JSExports.h"
+#include "Encode.h"
 
 using namespace std;
 using namespace gcanvas;
@@ -820,8 +821,16 @@ JNIEXPORT void JNICALL Java_com_taobao_gcanvas_GCanvasJNI_setLogLevel(
     return;
 }
 
-JSValue *TestInjectFunction(JSValue *args[], int argsSize) {
-    return new JSString("Hello,TestInjectFunction");
+JSValue *NativeBtoa(JSValue *args[], int argsSize) {
+    if (argsSize != 1 || !(args[0]->isString())) {
+        return new JSString("");
+    }
+    const char *value = args[0]->asString()->value();
+    int sourceLen = strlen(value);
+    std::string distData;
+    distData.resize(Base64EncodeLen(sourceLen));
+    Base64EncodeBuf((char *) (distData.c_str()), value, sourceLen);
+    return new JSString(distData);
 }
 
 JSValue *CallGCanvasNative(JSValue *args[], int argsSize) {
@@ -852,8 +861,8 @@ JSValue *CallGCanvasNative(JSValue *args[], int argsSize) {
 }
 
 JNIEXPORT jlong JNICALL
-Java_com_taobao_gcanvas_GCanvasJNI_getNativeInjectedFunction(JNIEnv *env, jclass clazz) {
-    return (jlong) TestInjectFunction;
+Java_com_taobao_gcanvas_GCanvasJNI_getNativeBtoa(JNIEnv *env, jclass clazz) {
+    return (jlong) NativeBtoa;
 }
 
 JNIEXPORT jlong JNICALL

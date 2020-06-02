@@ -192,7 +192,7 @@ JNIEXPORT jint JNICALL
 Java_com_taobao_gcanvas_GCanvasJNI_getNativeFps(JNIEnv *je, jclass jc, jstring contextId);
 
 JNIEXPORT jlong JNICALL
-Java_com_taobao_gcanvas_GCanvasJNI_getNativeInjectedFunction(JNIEnv *env, jclass clazz);
+Java_com_taobao_gcanvas_GCanvasJNI_getNativeBtoa(JNIEnv *env, jclass clazz);
 
 JNIEXPORT jlong JNICALL
 Java_com_taobao_gcanvas_GCanvasJNI_getNativeCallGCanvasNative(JNIEnv *env, jclass clazz);
