@@ -77,7 +77,7 @@ set(SRC_FILES
         ./src/support/GLUtil.cpp
         ./src/support/Log.cpp
         ./src/support/Util.cpp
-        ./src/support/Value.cpp )
+        ./src/support/Value.cpp)
 
 
 if (GCANVAS_WEEX)
@@ -90,16 +90,15 @@ if (GCANVAS_WEEX)
     file(GLOB native_3d_util_src "./android/3d/util/*.cpp")
     file(GLOB native_3d_view_src "./android/3d/view/*.cpp")
     file(GLOB native_android_manager_src "./android/manager/*.cpp")
-else()
+else ()
     message(" not enter the gcanvas_weex >>>>>>>>>> ")
     list(APPEND SRC_FILES ./android/GCanvasJNI.cpp)
-endif()
+endif ()
 
 
 if (GCANVAS_RUNTIME)
     add_definitions(-DGCANVAS_RUNTIME)
-endif()
-
+endif ()
 
 
 add_library( # Sets the name of the library.
@@ -115,7 +114,7 @@ add_library( # Sets the name of the library.
         ${native_3d_view_src}
         ${android_root_src}
         ${native_android_manager_src}
-        ${SRC_FILES} )
+        ${SRC_FILES})
 
 
 find_library( # Sets the name of the path variable.
@@ -130,6 +129,10 @@ set_target_properties(freetype PROPERTIES IMPORTED_LOCATION
         ${CMAKE_CURRENT_SOURCE_DIR}/android/freetype-prebuilt/libs/${ANDROID_ABI}/libfreetype.so)
 
 
+add_library(jsc4a SHARED IMPORTED)
+set_target_properties(jsc4a PROPERTIES IMPORTED_LOCATION
+        /Users/pengfei/code/JSC4A/lib/build/intermediates/library_and_local_jars_jni/release/${ANDROID_ABI}/libjsc4a.so)
+
 target_link_libraries( # Specifies the target library.
         gcanvas
         GLESv1_CM
@@ -139,6 +142,7 @@ target_link_libraries( # Specifies the target library.
         atomic
         jnigraphics
         freetype
+        jsc4a
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib})

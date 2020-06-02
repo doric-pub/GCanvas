@@ -182,12 +182,20 @@ JNIEXPORT void JNICALL Java_com_taobao_gcanvas_GCanvasJNI_texSubImage2D(
 
 
 JNIEXPORT bool JNICALL Java_com_taobao_gcanvas_GCanvasJNI_sendEvent(
-		JNIEnv *je, jclass jc, jstring contextId);
+        JNIEnv *je, jclass jc, jstring contextId);
 
-JNIEXPORT void JNICALL Java_com_taobao_gcanvas_GCanvasJNI_registerCallback(JNIEnv *je, jclass jc, jstring soPath, jint version);
+JNIEXPORT void JNICALL
+Java_com_taobao_gcanvas_GCanvasJNI_registerCallback(JNIEnv *je, jclass jc, jstring soPath,
+                                                    jint version);
 
-JNIEXPORT jint JNICALL Java_com_taobao_gcanvas_GCanvasJNI_getNativeFps(JNIEnv *je, jclass jc, jstring contextId);
+JNIEXPORT jint JNICALL
+Java_com_taobao_gcanvas_GCanvasJNI_getNativeFps(JNIEnv *je, jclass jc, jstring contextId);
 
+JNIEXPORT jlong JNICALL
+Java_com_taobao_gcanvas_GCanvasJNI_getNativeInjectedFunction(JNIEnv *env, jclass clazz);
+
+JNIEXPORT jlong JNICALL
+Java_com_taobao_gcanvas_GCanvasJNI_getNativeCallGCanvasNative(JNIEnv *env, jclass clazz);
 #endif
 
 #ifdef __cplusplus

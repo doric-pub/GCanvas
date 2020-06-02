@@ -254,6 +254,11 @@ public class GCanvasJNI {
 
     public static native void release(); // Deletes native canvas
 
+
+    public static native long getNativeInjectedFunction();
+
+    public static native long getNativeCallGCanvasNative();
+
     public static void setWrapperDevicePixelRatio(String contextID, double ratio) {
         setDevicePixelRatio(contextID, ratio);
         devicePixelRatioMap.put(contextID, ratio);

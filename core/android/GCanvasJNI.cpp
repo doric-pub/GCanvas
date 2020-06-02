@@ -37,8 +37,11 @@
 #include "prof.h"
 #endif
 
+#import "JSExports.h"
+
 using namespace std;
 using namespace gcanvas;
+using namespace js_export;
 
 // -----------------------------------------------------------
 // --                     JNI interface                     --
@@ -817,4 +820,43 @@ JNIEXPORT void JNICALL Java_com_taobao_gcanvas_GCanvasJNI_setLogLevel(
     return;
 }
 
+JSValue *TestInjectFunction(JSValue *args[], int argsSize) {
+    return new JSString("Hello,TestInjectFunction");
+}
 
+JSValue *CallGCanvasNative(JSValue *args[], int argsSize) {
+    if (argsSize != 2) {
+        return new JSString("Call failed");
+    }
+    GCanvasManager *theManager = GCanvasManager::GetManager();
+
+    const char *canvasId = args[0]->asString()->value();
+    GCanvasWeex *theCanvas = (GCanvasWeex *) theManager->GetCanvas(canvasId);
+    JSValue *ret = nullptr;
+    if (theCanvas) {
+        int context_type = theCanvas->mCanvasContext->mContextType;
+        const char *rc = args[1]->asString()->value();
+        LOG_D("Java_com_taobao_gcanvas_GCanvasJNI_render, cmd=%s", rc,
+              context_type);
+        if (0 != strlen(rc)) {
+            const char *result = theCanvas->CallNative(context_type == 0 ? 0x1 : 0x60000000, rc);
+            if (result && strlen(result) > 0) {
+                ret = new JSString(result);
+                delete result;
+            }
+        } else {
+            theCanvas->CallNative(0x60000001, "0");
+        }
+    }
+    return ret;
+}
+
+JNIEXPORT jlong JNICALL
+Java_com_taobao_gcanvas_GCanvasJNI_getNativeInjectedFunction(JNIEnv *env, jclass clazz) {
+    return (jlong) TestInjectFunction;
+}
+
+JNIEXPORT jlong JNICALL
+Java_com_taobao_gcanvas_GCanvasJNI_getNativeCallGCanvasNative(JNIEnv *env, jclass clazz) {
+    return (jlong) CallGCanvasNative;
+}
