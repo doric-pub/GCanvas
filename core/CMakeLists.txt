@@ -131,7 +131,7 @@ set_target_properties(freetype PROPERTIES IMPORTED_LOCATION
 
 add_library(jsc4a SHARED IMPORTED)
 set_target_properties(jsc4a PROPERTIES IMPORTED_LOCATION
-        /Users/pengfei/code/JSC4A/lib/build/intermediates/library_and_local_jars_jni/release/${ANDROID_ABI}/libjsc4a.so)
+        /Users/pengfei/Downloads/jsc4a/jni/${ANDROID_ABI}/libjsc4a.so)
 
 target_link_libraries( # Specifies the target library.
         gcanvas
